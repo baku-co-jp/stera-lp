@@ -1,0 +1,565 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta property="og:type" content="website">
+<meta property="og:title" content="stera pack のご案内（取次店 合同会社貘）">
+<meta property="og:description" content="三井住友カードの決済端末。カードも電子マネーも QR も、これ 1 台で。初期費用 0 円・最初の 13 か月は月額 0 円。">
+<meta property="og:image" content="https://baku-co-jp.github.io/stera-lp/stera-store.jpg">
+<meta property="og:url" content="https://baku-co-jp.github.io/stera-lp/">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="robots" content="noindex">
+<title>stera pack のご案内（取次店 合同会社貘）</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+  /* 設計：三井住友カードの stera 公式サイトの組み方に合わせる（コードと素材は使わず、組み方だけ）。
+     - 節は全幅。地は白・セージ #DFEEE5・薄い灰 #F5F5F5 の3色で切り替える。PC は左右の半分ずつで地を変え、写真は半分に端まで敷く。
+     - 角丸の面は使わない。副のボタンは細い枠の四角に「›」。主のボタンだけ stera pack 公式のオレンジ。
+     - 見出しは「字間を開けた小さな1行＋大きな1行」。太さは控えめ。
+     - 文字：最小14px、本文と料金の条件の文は17px。動き：ループ（端末・電波の輪・ブランドの帯）、スクロール連動（費用の場面・浮き上がり）、開いたときの一度だけの登場（ロゴ・見出し）。 */
+  :root {
+    --white: #ffffff; --sage: #dfeee5; --gray: #f5f5f5; --ink: #061f00; --text: #4a5048;
+    --rule: #cfd6d2; --edge: #7c8b88; --green: #0a8664; --aqua: #7be6d7;
+    --orange: #ff801e; --orange-press: #ff6f00;
+    --font-num: "Outfit", "Avenir Next", "Helvetica Neue", sans-serif;
+    --font-body: "Noto Sans JP", "Hiragino Sans", "Hiragino Kaku Gothic ProN", sans-serif;
+    --side: 20px;
+    color-scheme: light;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  [hidden] { display: none !important; }
+  html { -webkit-text-size-adjust: 100%; }
+  body { font-family: var(--font-body); color: var(--ink); background: var(--white); font-size: 17px; line-height: 1.8; letter-spacing: .03em; word-break: auto-phrase; line-break: strict; overflow-x: hidden; }
+  h1, h2 { text-wrap: balance; }
+  p { max-width: 36em; }
+  .wrap { max-width: 1040px; margin: 0 auto; padding: 0 var(--side); }
+  .num { font-family: var(--font-num); font-variant-numeric: tabular-nums; letter-spacing: 0; }
+  .nw { white-space: nowrap; }
+  a { color: inherit; }
+  img { display: block; max-width: 100%; height: auto; }
+  :focus-visible { outline: 3px solid var(--ink); outline-offset: 2px; }
+
+  .mock { font-size: 14px; color: #6b5300; background: #fff4c2; text-align: center; padding: 2px 8px; }
+  .band { height: 40px; display: flex; align-items: center; font-size: 14px; color: var(--text); border-bottom: 1px solid var(--rule); }
+  .band .wrap { width: 100%; display: flex; justify-content: space-between; gap: 8px; }
+
+  /* 見出しの型：字間を開けた小さな1行＋大きな1行 */
+  .kicker { display: block; font-size: 14px; letter-spacing: .24em; color: var(--text); margin-bottom: 8px; }
+  h2 { font-size: 24px; line-height: 1.55; font-weight: 500; letter-spacing: .06em; margin-bottom: 24px; }
+  h3 { font-size: 18px; font-weight: 700; margin: 0 0 10px; }
+  .center { text-align: center; }
+  .center p { margin-left: auto; margin-right: auto; }
+
+  /* 主のボタン（stera pack 公式のオレンジ）と、副のボタン（公式サイトの細い枠の四角） */
+  .btn { display: flex; align-items: center; justify-content: center; gap: 10px; width: 100%; min-height: 56px; font-weight: 700; font-size: 19px; text-decoration: none; text-align: center; padding: 10px 20px; cursor: pointer; font-family: inherit; line-height: 1.35; }
+  .btn-main { background: var(--orange); color: #fff; border: 2px solid var(--orange); border-radius: 999px; }
+  .btn-main:hover, .btn-main:active { background: var(--orange-press); border-color: var(--orange-press); }
+  .btn-main .arrow { font-family: var(--font-num); font-size: 20px; transition: transform .2s; }
+  .btn-main:hover .arrow { transform: translateX(3px); }
+  .btn-line { background: #fff; color: var(--ink); border: 1px solid var(--ink); font-size: 17px; font-weight: 500; min-height: 54px; justify-content: space-between; padding: 10px 18px 10px 24px; }
+  .btn-line::after { content: "›"; font-family: var(--font-num); font-size: 24px; line-height: 1; }
+  .btn-line.down::after { content: "↓"; font-size: 18px; }
+
+  /* 1. 最初の画面 */
+  .hero { position: relative; overflow: hidden; }
+  .hero-text { padding: 10px var(--side) 30px; position: relative; z-index: 1; }
+  .maker { font-size: 14px; font-weight: 700; letter-spacing: .12em; animation: fadeIn .6s ease-out both; }
+  .logo { width: 200px; margin: 4px 0 8px; animation: logoIn .9s ease-out both; }
+  .hero h1 { font-size: 26px; line-height: 1.35; font-weight: 700; letter-spacing: .02em; }
+  .hero h1 .nw { display: inline-block; animation: lineIn .7s cubic-bezier(.2,.7,.2,1) .25s both; }
+  .hero h1 br + .nw { animation-delay: .4s; }
+  @keyframes logoIn { from { opacity: 0; transform: translateY(6px); filter: blur(6px); } to { opacity: 1; transform: none; filter: none; } }
+  @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+  @keyframes lineIn { from { opacity: 0; transform: translateY(14px); } to { opacity: 1; transform: none; } }
+  .seg { font-size: 16px; color: var(--text); margin-top: 4px; line-height: 1.6; letter-spacing: .01em; }
+  .terms { list-style: none; margin: 10px 0 16px; border-top: 1px solid var(--rule); letter-spacing: .01em; }
+  .terms li { display: grid; grid-template-columns: 4.2em 1fr; gap: 8px; align-items: baseline; padding: 7px 0; border-bottom: 1px solid var(--rule); line-height: 1.7; }
+  .terms li.zero-row { grid-template-columns: 4.2em 1fr 104px; align-items: center; padding: 2px 0; }
+  .terms .k { font-size: 14px; font-weight: 700; color: var(--text); }
+  .terms b { font-weight: 700; }
+  .zero { font-family: var(--font-num); font-weight: 600; font-size: 48px; line-height: 1; color: var(--orange); }
+  .zero + .u { font-size: 20px; font-weight: 700; color: var(--orange); margin-left: 2px; }
+  .hero .btn-line { margin-top: 10px; }
+  .fee { margin-top: 16px; }
+  .fee b { font-weight: 700; }
+  .hero-visual { display: none; }
+
+  /* 端末と非接触の輪 */
+  .device { position: relative; }
+  .device .float { animation: float 6s ease-in-out infinite; position: relative; z-index: 1; }
+  .device .shadow { display: block; width: 70%; height: 12px; margin: -4px auto 0; border-radius: 50%; background: radial-gradient(closest-side, rgba(6,31,0,.2), rgba(6,31,0,0)); animation: shadow 6s ease-in-out infinite; }
+  @keyframes float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-6px); } }
+  @keyframes shadow { 0%, 100% { transform: scaleX(1); opacity: 1; } 50% { transform: scaleX(.94); opacity: .8; } }
+  .rings { position: absolute; left: 55%; top: 40%; width: 0; height: 0; z-index: 2; pointer-events: none; }
+  .rings i { position: absolute; left: 0; top: 0; width: 64px; height: 64px; margin: -32px 0 0 -32px; border: 2px solid rgba(10,134,100,.45); border-radius: 50%; opacity: 0; transform: scale(.32); animation: ring 3.6s ease-out infinite; }
+  .rings i:nth-child(2) { animation-delay: 1.2s; } .rings i:nth-child(3) { animation-delay: 2.4s; }
+  @keyframes ring { 0% { transform: scale(.32); opacity: .5; } 100% { transform: scale(1); opacity: 0; } }
+
+  /* 2. 累計導入 */
+  .stat { background: var(--gray); padding: 32px 0; text-align: center; }
+  .stat-k { display: block; font-size: 14px; letter-spacing: .24em; color: var(--text); }
+  .stat-v { display: block; font-size: 22px; font-weight: 500; letter-spacing: .06em; margin-top: 4px; }
+  .stat-v .num { font-size: 76px; font-weight: 300; line-height: 1; margin-right: 4px; letter-spacing: -.01em; }
+
+  /* 3. 決済ブランドの帯 */
+  .brands-sec { padding: 26px 0 30px; border-bottom: 1px solid var(--rule); }
+  .brands { height: 50px; display: flex; align-items: center; overflow: hidden; margin-top: 4px; }
+  .brands .track { display: flex; gap: 0; width: max-content; animation: marquee 50s linear infinite; }
+  .brands span { font-size: 14px; font-weight: 500; padding: 4px 18px; white-space: nowrap; border-left: 1px solid var(--rule); }
+  @keyframes marquee { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+  .brands-note { margin-top: 10px; color: var(--text); }
+
+  /* 4. 写真と説明（PC は左右に分ける） */
+  .split > .half { padding: 40px var(--side); }
+  .photo-half { padding: 0 !important; }
+  .photo-half img { width: 100%; height: 100%; aspect-ratio: 16 / 10; object-fit: cover; object-position: 50% 78%; }
+  .bg-gray { background: var(--gray); }
+  .bg-sage { background: var(--sage); }
+  .bg-white { background: var(--white); }
+
+  /* 5. 費用：4つの場面。PC は左の大きな数字が場面に合わせて切り替わる */
+  .cost { padding: 48px 0 24px; }
+  .story-visual { display: none; }
+  .steps { list-style: none; display: grid; grid-template-columns: minmax(0, 1fr); gap: 16px; }
+  .story > * { min-width: 0; }
+  .step { background: var(--white); padding: 26px 20px; }
+  .step-tag { display: block; font-size: 14px; letter-spacing: .24em; color: var(--text); }
+  .step-big { font-weight: 500; font-size: 22px; line-height: 1.2; margin: 8px 0 18px; letter-spacing: .04em; }
+  .step-big .num { font-size: 56px; font-weight: 400; }
+  .rows { display: grid; border-top: 1px solid var(--rule); }
+  .rows div { display: grid; grid-template-columns: 1fr auto; gap: 12px; align-items: baseline; padding: 12px 0; border-bottom: 1px solid var(--rule); }
+  .rows dt { font-weight: 500; line-height: 1.5; }
+  .rows dt small { display: block; font-size: 14px; color: var(--text); font-weight: 400; }
+  .rows dd { font-family: var(--font-num); font-weight: 600; font-size: 24px; text-align: right; white-space: nowrap; }
+  .rows dd small { font-family: var(--font-body); font-size: 14px; font-weight: 500; }
+  .rows dd.txt { font-family: var(--font-body); font-size: 17px; font-weight: 700; white-space: normal; }
+  .aside { font-size: 15px; color: var(--text); margin-top: 12px; }
+  .rates { width: calc(100% + 8px); table-layout: fixed; border-collapse: separate; border-spacing: 4px; margin: 0 -4px 6px; }
+  .rates thead th:first-child { width: 27%; background: transparent; }
+  .rates th, .rates td { text-align: center; padding: 8px 4px; }
+  .rates thead th { font-size: 14px; line-height: 1.4; background: var(--sage); font-weight: 700; }
+  .rates tbody th { font-size: 14px; font-weight: 700; text-align: left; background: var(--gray); padding-left: 10px; line-height: 1.4; }
+  .rates td { font-family: var(--font-num); font-size: 22px; font-weight: 600; border: 1px solid var(--rule); }
+  .rates td small { font-size: 14px; }
+  .rates td.big { font-size: 28px; font-weight: 700; background: var(--sage); border-color: var(--sage); }
+  .checks { list-style: none; display: grid; gap: 8px; margin-top: 14px; }
+  .checks li { position: relative; padding-left: 28px; line-height: 1.7; }
+  .checks li::before { content: ""; position: absolute; left: 0; top: .45em; width: 18px; height: 18px; border-radius: 50%; background: var(--aqua); }
+  .checks li::after { content: ""; position: absolute; left: 5px; top: calc(.45em + 5px); width: 7px; height: 4px; border-left: 2px solid var(--ink); border-bottom: 2px solid var(--ink); transform: rotate(-45deg); }
+  .checks li.warn::before { background: #ffd9bb; }
+  .checks li.warn::after { content: "!"; border: none; transform: none; left: 7px; top: .3em; width: auto; height: auto; font-weight: 900; font-size: 14px; }
+  .example { margin-top: 18px; background: var(--gray); padding: 14px 16px; }
+  .example .row { display: flex; align-items: baseline; justify-content: space-between; gap: 8px; }
+  .example .v { font-family: var(--font-num); font-weight: 600; font-size: 30px; white-space: nowrap; }
+  .example .v small { font-family: var(--font-body); font-size: 14px; }
+  .example .ex-note { margin-top: 8px; padding-top: 8px; border-top: 1px dashed var(--edge); }
+
+  /* 6. 違約金と45日 */
+  .tl-bar { display: grid; grid-template-columns: 13fr 12fr 12fr 6fr; height: 44px; background: #fff; }
+  .tl-bar div { display: flex; align-items: center; justify-content: center; font-family: var(--font-num); font-weight: 600; font-size: 15px; }
+  .tl-bar .a { background: #c3cfcb; } .tl-bar .b { background: #d8e1de; } .tl-bar .c { background: #ebf0ee; }
+  .tl-bar .d { background: #fff; font-family: var(--font-body); font-size: 14px; color: var(--green); }
+  .tl-axis { display: grid; grid-template-columns: 13fr 12fr 12fr 6fr; font-size: 14px; margin-top: 4px; line-height: 1.4; }
+  .waive { display: flex; gap: 14px; align-items: center; background: #fff; padding: 16px 18px; border-left: 4px solid var(--green); }
+  .bg-white .waive { background: var(--gray); }
+  .waive .d { font-family: var(--font-num); font-weight: 500; font-size: 44px; line-height: 1; white-space: nowrap; color: var(--green); }
+  .waive .d small { font-family: var(--font-body); font-size: 14px; }
+  .note { margin-top: 1em; }
+
+  /* 7. 話を聞く */
+  .contact { padding: 48px 0 56px; }
+  .contact .lead { margin: -8px auto 24px; }
+  .panel { background: var(--white); padding: 26px 20px; max-width: 680px; margin: 0 auto; }
+  form { display: grid; gap: 14px; }
+  .field > label { display: flex; align-items: center; gap: 6px; font-size: 16px; font-weight: 700; margin-bottom: 6px; }
+  .req { font-size: 14px; color: var(--text); border: 1px solid var(--text); padding: 0 5px; font-weight: 700; line-height: 1.5; }
+  .field input, .field select { width: 100%; font-family: inherit; font-size: 17px; padding: 12px 14px; border: 1px solid var(--edge); border-radius: 4px; background: #fff; color: var(--ink); }
+  .field input:focus, .field select:focus { border-color: var(--green); outline: 2px solid var(--green); outline-offset: 0; }
+  .opt { display: flex; gap: 10px; align-items: flex-start; font-size: 16px; line-height: 1.6; cursor: pointer; min-height: 44px; }
+  .opt input { width: 24px; height: 24px; margin-top: 1px; accent-color: var(--green); flex: none; }
+  .form-note a { display: inline-block; padding: 10px 0; }
+  .tlink { display: inline-block; font-weight: 700; color: var(--ink); text-decoration: underline; text-underline-offset: 5px; padding: 10px 0; }
+  .tlink::before { content: "› "; text-decoration: none; display: inline-block; margin-right: 2px; }
+  .done-lead { font-size: 18px; font-weight: 700; line-height: 1.7; }
+  .done-more { margin-top: 18px; padding: 16px; background: var(--gray); }
+  .done-more .done-k { font-weight: 700; margin-bottom: 4px; }
+  .done-more .mark { width: 40px; height: 40px; border-radius: 8px; float: right; margin: 0 0 6px 10px; }
+  .cat-line { display: grid; grid-template-columns: 44px 1fr; gap: 12px; align-items: center; margin-top: 14px; }
+  .cat-line .tlink { display: block; width: fit-content; padding-bottom: 0; }
+
+  /* 8. REVERSE・猫・自分で申し込む */
+  .after { padding: 32px 0 12px; }
+  .about-row { display: grid; grid-template-columns: 64px 1fr; gap: 14px; align-items: start; padding: 18px 0; border-bottom: 1px solid var(--rule); }
+  .about-row img { width: 64px; height: 64px; object-fit: contain; }
+  .about-row img.mark { border-radius: 8px; }
+  .self { padding: 20px 0 24px; }
+  .links { border-top: 1px solid var(--rule); padding: 8px 0 16px; }
+  .links .about-row:last-child { border-bottom: none; }
+  .apply { list-style: none; counter-reset: ap; display: grid; gap: 6px; margin: 4px 0 14px; }
+  .apply li { counter-increment: ap; position: relative; padding-left: 34px; line-height: 1.7; }
+  .apply li::before { content: counter(ap); position: absolute; left: 0; top: .15em; width: 24px; height: 24px; border-radius: 50%; background: var(--sage); font-family: var(--font-num); font-weight: 600; font-size: 14px; display: flex; align-items: center; justify-content: center; }
+  .apply b { font-weight: 700; }
+  .code { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; margin-bottom: 14px; }
+  .code-box { display: inline-flex; align-items: center; gap: 10px; min-height: 44px; border: 1px solid var(--ink); padding: 6px 16px; font-weight: 700; }
+  .code-box .num { font-size: 20px; letter-spacing: .2em; }
+
+  footer { background: var(--gray); padding: 32px 0 28px; font-size: 14px; color: var(--text); line-height: 1.75; text-align: center; }
+  footer p { margin: 0 auto; }
+  footer p + p { margin-top: 1em; }
+  footer a { color: var(--ink); padding: 6px 0; }
+  footer a[href^="mailto"] { display: inline-block; padding: 10px 0; }
+
+  .bar { position: fixed; left: 0; right: 0; bottom: 0; padding: 10px 14px calc(10px + env(safe-area-inset-bottom)); background: rgba(255,255,255,.94); backdrop-filter: blur(6px); border-top: 1px solid var(--rule); opacity: 0; pointer-events: none; transition: opacity .2s; z-index: 10; }
+  .bar.show { opacity: 1; pointer-events: auto; }
+  .bar .btn { max-width: 428px; margin: 0 auto; }
+  .page-end { height: 84px; background: var(--gray); }
+
+  /* スクロールに連動して浮き上がる（位置に連動し、戻せば戻る。対応していないブラウザでは止め絵） */
+  @supports (animation-timeline: view()) {
+    .rise { animation: rise linear both; animation-timeline: view(); animation-range: entry 0% cover 28%; }
+    @keyframes rise { from { opacity: .25; transform: translateY(28px); } to { opacity: 1; transform: none; } }
+  }
+
+  /* OS で動きを減らす設定の人には止める */
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after { animation: none !important; transition: none !important; }
+    .rings { display: none; }
+    .brands { height: auto; padding: 6px 0; }
+    .brands .track { flex-wrap: wrap; width: auto; row-gap: 6px; }
+    .brands .dup { display: none; }
+  }
+
+  /* PC：公式と同じく、節を左右の半分に分けて地を変える */
+  @media (min-width: 760px) {
+    :root { --side: 32px; }
+    .split { display: grid; grid-template-columns: 1fr 1fr; }
+    .split > .half { padding: 72px 56px; display: flex; flex-direction: column; justify-content: center; }
+    .split > .half.l { padding-left: max(32px, calc(50vw - 520px)); }
+    .split > .half.r { padding-right: max(32px, calc(50vw - 520px)); }
+    .photo-half img { aspect-ratio: auto; min-height: 420px; }
+    .hero.split > .half.l { padding-top: 40px; padding-bottom: 56px; justify-content: flex-start; }
+    .logo { width: 300px; margin: 8px 0 18px; }
+    .hero h1 { font-size: 34px; letter-spacing: .05em; }
+    .terms li.zero-row { grid-template-columns: 4.2em 1fr; padding: 9px 0; }
+    .terms li.zero-row .device { display: none; }
+    .hero .btn { max-width: 420px; }
+    .hero-visual { display: flex; align-items: center; justify-content: center; position: relative; }
+    .hero-visual .device { width: min(440px, 80%); }
+    .rings i { width: 96px; height: 96px; margin: -48px 0 0 -48px; transform: scale(.29); }
+    @keyframes ring { 0% { transform: scale(.29); opacity: .5; } 100% { transform: scale(1); opacity: 0; } }
+    h2 { font-size: 30px; }
+    h3 { font-size: 19px; }
+    .stat { padding: 44px 0; }
+    .stat-v .num { font-size: 104px; }
+    .cost { padding: 80px 0 40px; }
+    .story { display: grid; grid-template-columns: 1fr 1.25fr; gap: 40px; align-items: start; }
+    .story-visual { display: block; position: sticky; top: 18vh; height: 64vh; background: var(--white); overflow: hidden; }
+    .sv { position: absolute; inset: 0; display: flex; flex-direction: column; justify-content: center; padding: 48px; opacity: 0; transform: translateY(24px); transition: opacity .5s ease, transform .5s ease; }
+    .sv.on { opacity: 1; transform: none; }
+    .sv .tag { font-size: 14px; letter-spacing: .24em; color: var(--text); }
+    .sv .big { font-weight: 500; font-size: 30px; line-height: 1.1; margin-top: 12px; letter-spacing: .04em; }
+    .sv .big .num { font-size: 120px; font-weight: 300; letter-spacing: -.02em; }
+    .sv .sub { margin-top: 16px; color: var(--text); font-size: 17px; }
+    .step { padding: 36px 40px; }
+    .step .step-big { display: none; }
+    .steps { gap: 24px; padding-bottom: 12vh; }
+    .contact { padding: 80px 0; }
+    .panel { padding: 40px 48px; }
+    .self-wrap { max-width: 744px; }
+    .links-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 48px; align-items: start; }
+    .links .about-row { border-bottom: none; }
+    footer { font-size: 15px; }
+    .bar { display: none; }
+  }
+</style>
+</head>
+<body>
+  <div class="mock">叩き台（モック）｜フォームの送信・計測は動きません</div>
+  <div class="band"><div class="wrap"><span>stera pack のご案内</span><span>取次店 合同会社貘</span></div></div>
+
+  <!-- 1. 最初の画面（PC は左：白に文字、右：セージに端末） -->
+  <section class="hero split" id="top">
+    <div class="half l hero-text bg-white">
+      <p class="maker">三井住友カードの決済端末</p>
+      <img class="logo" src="stera-pack-logo.png" alt="stera pack" width="900" height="157">
+      <h1><span class="nw">カードも電子マネーも</span><br><span class="nw"><span class="num">QR</span>も、これ<span class="num">1</span>台で。</span></h1>
+      <p class="seg" id="seg">飲食・美容・小売などの対面のお店向け</p>
+      <ul class="terms">
+        <li class="zero-row"><span class="k">初期費用</span><span><span class="zero">0</span><span class="u">円</span></span>
+          <span class="device"><span class="rings"><i></i><i></i><i></i></span><img class="float" src="stera-terminal.png" alt="stera pack の端末" width="643" height="521"><span class="shadow"></span></span></li>
+        <li><span class="k">月額</span><span>最初の<b><span class="num">13</span>か月 <span class="num">0</span>円</b>、<span class="num">14</span>か月目から <span class="nw"><span class="num">3,300</span>円（税込）／台</span></span></li>
+        <li><span class="k">契約</span><span><span class="num">3</span>年。解約の申し出から<b><span class="num">45</span>日以内</b>に端末を再利用できる状態で返せば、<b>違約金はかかりません</b>。</span></li>
+      </ul>
+      <a class="btn btn-main" href="#form">担当者から話を聞く（無料）<span class="arrow">→</span></a>
+      <a class="btn btn-line down" href="#self">自分で申し込む（紹介コードあり）</a>
+      <p class="fee">決済手数料は <b>Visa・Mastercard <span class="num">1.98</span>%〜</b>（Visa・Mastercard の年の売上見込み<span class="num">2,500</span>万円以下の中小のお店が対象）</p>
+    </div>
+    <div class="half r hero-visual bg-sage" aria-hidden="true">
+      <span class="device"><span class="rings"><i></i><i></i><i></i></span><img class="float" src="stera-terminal.png" alt="" width="643" height="521"><span class="shadow"></span></span>
+    </div>
+  </section>
+
+  <!-- 2. 累計導入 -->
+  <section class="stat">
+    <span class="stat-k">stera の累計導入</span>
+    <span class="stat-v"><span class="num">55</span>万件</span>
+  </section>
+
+  <!-- 3. 決済ブランド -->
+  <section class="brands-sec">
+    <div class="wrap center"><span class="kicker">対応する決済</span><h2 style="margin-bottom:6px"><span class="num">30</span>種類以上の決済に対応</h2></div>
+    <div class="brands" aria-label="使える決済">
+      <div class="track">
+        <span>Visa</span><span>Mastercard</span><span>JCB</span><span>American Express</span><span>Diners Club</span><span>Discover</span><span>銀聯</span><span>交通系電子マネー</span><span>iD</span><span>QUICPay+</span><span>楽天Edy</span><span>nanaco</span><span>WAON</span><span>PayPay</span><span>楽天ペイ</span><span>d払い</span><span>au PAY</span><span>メルペイ</span><span>Alipay</span><span>WeChat Pay</span>
+        <span class="dup" aria-hidden="true">Visa</span><span class="dup" aria-hidden="true">Mastercard</span><span class="dup" aria-hidden="true">JCB</span><span class="dup" aria-hidden="true">American Express</span><span class="dup" aria-hidden="true">Diners Club</span><span class="dup" aria-hidden="true">Discover</span><span class="dup" aria-hidden="true">銀聯</span><span class="dup" aria-hidden="true">交通系電子マネー</span><span class="dup" aria-hidden="true">iD</span><span class="dup" aria-hidden="true">QUICPay+</span><span class="dup" aria-hidden="true">楽天Edy</span><span class="dup" aria-hidden="true">nanaco</span><span class="dup" aria-hidden="true">WAON</span><span class="dup" aria-hidden="true">PayPay</span><span class="dup" aria-hidden="true">楽天ペイ</span><span class="dup" aria-hidden="true">d払い</span><span class="dup" aria-hidden="true">au PAY</span><span class="dup" aria-hidden="true">メルペイ</span><span class="dup" aria-hidden="true">Alipay</span><span class="dup" aria-hidden="true">WeChat Pay</span>
+      </div>
+    </div>
+    <div class="wrap center"><p class="brands-note">PiTaPa は対象外です。審査の結果、一部の決済が使えない場合があります。</p></div>
+  </section>
+
+  <!-- 4. 写真と説明（PC は左：写真、右：灰に文字） -->
+  <section class="split">
+    <div class="half l photo-half"><img src="stera-store.jpg" alt="お店のカウンターで、stera の端末にカードをかざして支払うところ" width="1200" height="771"></div>
+    <div class="half r bg-gray rise">
+      <span class="kicker">オールインワン決済端末</span>
+      <p>お店側とお客さま側に画面が<span class="num">2</span>つ。レシートのプリンター付きで、カードも電子マネーも<span class="nw"> QR も</span>、かざすだけで会計できます。</p>
+    </div>
+  </section>
+
+  <!-- 5. 費用（4つの場面） -->
+  <section class="cost bg-sage" id="cost">
+    <div class="wrap">
+      <div class="center"><span class="kicker">料金</span>
+        <h2>かかるのは、おもに決済手数料と、<br><span class="num">14</span>か月目からの月<span class="nw"><span class="num">3,300</span>円（税込）</span>です。</h2></div>
+      <div class="story">
+        <div class="story-visual" aria-hidden="true">
+          <div class="sv on" data-step="1"><span class="tag">月額</span><span class="big"><span class="num">13</span>か月 <span class="num">0</span>円</span><span class="sub"><span class="num">14</span>か月目から <span class="num">3,300</span>円（税込）／台</span></div>
+          <div class="sv" data-step="2"><span class="tag">決済手数料（Visa・Mastercard）</span><span class="big"><span class="num">1.98</span>%</span><span class="sub">スモールビジネスプランの場合</span></div>
+          <div class="sv" data-step="3"><span class="tag">売上の入金</span><span class="big">締めから<br><span class="num">6</span>営業日後</span></div>
+          <div class="sv" data-step="4"><span class="tag">ロール紙・修理・交換</span><span class="big"><span class="num">0</span>円</span></div>
+        </div>
+        <ol class="steps">
+          <li class="step rise" data-step="1" id="cost-1">
+            <span class="step-tag">月額</span>
+            <p class="step-big"><span class="num">13</span>か月 <span class="num">0</span>円</p>
+            <dl class="rows">
+              <div><dt>初期費用</dt><dd>0<small>円</small></dd></div>
+              <div><dt>月額<small>ご利用開始月から<span class="num">13</span>か月</small></dt><dd>0<small>円</small></dd></div>
+              <div><dt>月額<small><span class="num">14</span>か月目から・<span class="num">1</span>台あたり</small></dt><dd>3,300<small>円（税込）</small></dd></div>
+            </dl>
+            <p class="aside">直近<span class="num">1</span>年のキャッシュレス売上が<span class="num">3,000</span>万円以上なら、その後は永年<span class="num">0</span>円</p>
+          </li>
+          <li class="step rise" data-step="2" id="cost-2">
+            <span class="step-tag">決済手数料</span>
+            <p class="step-big"><span class="num">1.98</span>%〜</p>
+            <table class="rates">
+              <thead><tr><th></th><th>Visa<br>Mastercard</th><th>JCB・Amex<br>Diners・Discover</th><th>そのほか</th></tr></thead>
+              <tbody>
+                <tr><th>スモール<br>ビジネス</th><td class="big">1.98<small>%</small></td><td>2.48<small>%</small></td><td>3.24<small>%</small></td></tr>
+                <tr><th>スタンダード</th><td>2.70<small>%</small></td><td>3.24<small>%</small></td><td>3.24<small>%</small></td></tr>
+              </tbody>
+            </table>
+            <h3 style="margin-top:18px">スモールビジネスプランの対象</h3>
+            <ul class="checks">
+              <li><span class="nw">中小企業</span>で、上場企業のグループやフランチャイズ加盟店でない</li>
+              <li>Visa・Mastercard の売上見込みが年<span class="num">2,500</span>万円以下</li>
+              <li class="warn">たばこ店・百貨店・旅行代理店・宿泊施設・運輸・不動産は対象外</li>
+              <li class="warn">申込後に Visa・Mastercard の年間取扱高が<span class="num">2,500</span>万円を超えると、スタンダードプランに変わります（判定は年<span class="num">4</span>回）</li>
+              <li class="warn">回数券や先払いなど、<span class="num">1</span>か月を超えるサービスの代金（継続的役務）は、この端末では受けられません</li>
+            </ul>
+            <div class="example">
+              <div class="row"><span>お会計 <span class="num">10,000</span>円を Visa・Mastercard で受けたときの手数料（<span class="num">1.98</span>%）</span><span class="v num">198<small>円</small></span></div>
+              <p class="ex-note">課税分の手数料にかかる消費税相当額は、別にかかります。</p>
+            </div>
+          </li>
+          <li class="step rise" data-step="3" id="cost-3">
+            <span class="step-tag">入金</span>
+            <p class="step-big">締めから <span class="num">6</span>営業日後</p>
+            <dl class="rows">
+              <div><dt>締め</dt><dd class="txt">月<span class="num">2</span>回 または 月<span class="num">6</span>回</dd></div>
+              <div><dt>入金</dt><dd class="txt">締めから<span class="num">6</span>営業日後<br><small>月<span class="num">2</span>回締めは<span class="num">15</span>日後も選べます</small></dd></div>
+              <div><dt>振込手数料<small>三井住友銀行</small></dt><dd>0<small>円</small></dd></div>
+              <div><dt>振込手数料<small>ほかの銀行・<span class="num">1</span>回</small></dt><dd>220<small>円（税込）</small></dd></div>
+            </dl>
+          </li>
+          <li class="step rise" data-step="4" id="cost-4">
+            <span class="step-tag">そのほか</span>
+            <p class="step-big"><span class="num">0</span>円</p>
+            <dl class="rows">
+              <div><dt>ロール紙</dt><dd>0<small>円</small></dd></div>
+              <div><dt>修理・交換<small>お店に過失がない場合</small></dt><dd>0<small>円</small></dd></div>
+              <div><dt>月額の払い方</dt><dd class="txt">申込時に登録する<br>クレジットカード</dd></div>
+            </dl>
+          </li>
+        </ol>
+      </div>
+    </div>
+  </section>
+
+  <!-- 6. 違約金と45日（PC は左：灰に違約金、右：白に45日） -->
+  <section class="contract split">
+    <div class="half l bg-gray rise">
+      <span class="kicker">契約</span>
+      <h2><span class="num">3</span>年契約です。<br>途中でやめるときは。</h2>
+      <h3><span class="num">3</span>年未満で解約したときの違約金（税込・<span class="num">1</span>台あたり）</h3>
+      <div class="tl-bar"><div class="a num">88,000</div><div class="b num">66,000</div><div class="c num">44,000</div><div class="d">満了</div></div>
+      <div class="tl-axis"><span>申込月〜<span class="num">13</span>か月目</span><span><span class="num">14</span>〜<span class="num">25</span>か月目</span><span><span class="num">26</span>〜<span class="num">37</span>か月目</span><span></span></div>
+    </div>
+    <div class="half r bg-white rise">
+      <div class="waive">
+        <span class="d num">45<small>日</small></span>
+        <p>解約の申し出から<span class="num">45</span>日以内に、端末を再利用できる状態で返せば、違約金はかかりません（2022年6月以降の新規契約）。</p>
+      </div>
+      <p class="note">審査に<span class="nw"><span class="num">2</span>〜<span class="num">3</span>か月</span>かかることがあり、QR などのコード決済は、申込から導入まで<span class="nw"><span class="num">3</span>か月以上</span>かかる場合があります。LAN が必要です（有線を推奨）。</p>
+    </div>
+  </section>
+
+  <!-- 7. 話を聞く -->
+  <section class="contact bg-sage" id="form">
+    <div class="wrap">
+      <div class="center"><span class="kicker">ご相談</span>
+        <h2>三井住友カードの担当者が、<br>ご説明にうかがいます。</h2>
+        <p class="lead" id="form-lead">取次店から担当者へおつなぎします。料金や入金の流れなど、気になることはその場でお聞きください。</p></div>
+      <div class="panel">
+        <form id="consult">
+          <input type="hidden" name="r" id="ref">
+          <div class="field"><label for="shop">店名<span class="req">必須</span></label><input id="shop" name="shop" type="text" autocomplete="organization" required></div>
+          <div class="field"><label for="industry">業種<span class="req">必須</span></label>
+            <select id="industry" name="industry" required>
+              <option value="">選んでください</option><option value="f">飲食</option><option value="b">美容・サロン</option><option value="s">小売</option><option value="o">そのほか</option>
+            </select></div>
+          <div class="field"><label for="person">ご担当者のお名前<span class="req">必須</span></label><input id="person" name="person" type="text" autocomplete="name" required></div>
+          <div class="field"><label for="tel">電話番号<span class="req">必須</span></label><input id="tel" name="tel" type="tel" autocomplete="tel" placeholder="090-0000-0000" required></div>
+          <div class="field"><label for="addr">お店の住所<span class="req">必須</span></label><input id="addr" name="addr" type="text" autocomplete="street-address" required></div>
+          <label class="opt"><input type="checkbox" name="reverse" value="1" id="rv"><span>予約や問い合わせの返事など、レジ以外の雑務を AI にまかせる「REVERSE」の案内も、メールで受け取る</span></label>
+          <div class="field" id="rv-mail" hidden><label for="mail">メールアドレス<span class="req">必須</span></label><input id="mail" name="mail" type="email" autocomplete="email" placeholder="example@shop.jp"></div>
+          <button class="btn btn-main" type="submit">担当者から話を聞く（無料）<span class="arrow">→</span></button>
+          <p class="form-note">送っていただいた情報は、合同会社貘が stera のご案内と取次のためだけに使い、取次の代理店と三井住友カードの担当者にお渡しします。送信をもって、この取り扱いに同意いただいたものとします。REVERSE の案内は、チェックを入れた方にだけ合同会社貘からメールでお送りし、いつでも止められます。<a href="#">個人情報の取り扱い</a></p>
+        </form>
+        <div class="done" id="done" hidden>
+          <p class="done-lead">ありがとうございます。<br>三井住友カードの担当者から、ご連絡します。</p>
+          <div class="done-more">
+            <img src="reverse-mark.jpg" alt="REVERSE" class="mark">
+            <p class="done-k">ご連絡までの間に。</p>
+            <p>私たちは、予約や問い合わせの返事など、レジ以外の雑務を AI にまかせる「REVERSE」をつくっています。空いた手を、売上の仕事に。</p>
+            <a class="tlink" data-go="reverse" href="#">REVERSE を見てみる</a>
+          </div>
+          <div class="cat-line">
+            <img src="rusty.png" alt="" width="44" height="44">
+            <p>手のひらに乗る、世界でいちばん小さな野生の猫をご存じですか。<a class="tlink" data-go="cat" href="#">見てみる</a></p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 8. 自分で申し込む -->
+  <section class="after">
+    <div class="wrap self-wrap">
+      <div class="self" id="self">
+        <h3>自分で申し込むときは</h3>
+        <ol class="apply">
+          <li>公式サイトで、アカウントを登録します。</li>
+          <li>「申込URL発行のお知らせ」のメールが届きます。</li>
+          <li>メールの URL から開く申込情報の入力画面で、<b>担当コードの欄に紹介コード</b>を入れてください。</li>
+        </ol>
+        <div class="code"><span class="code-box">紹介コード <span class="num">●●●</span></span></div>
+        <a class="btn btn-line" href="https://steraweb.smbc-gp.co.jp/account-register?inflowChannelId=ch_et2J8oUx&amp;productId=1&amp;smeSelectEnabled=true" target="_blank" rel="noopener">公式サイトでアカウントを登録する</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- 9. いちばん下：REVERSE と猫の入口 -->
+  <section class="links">
+    <div class="wrap links-grid">
+      <div class="about-row" id="about-rv">
+        <img src="reverse-mark.jpg" alt="REVERSE" width="64" height="64" class="mark">
+        <div><p>予約や問い合わせの返事を AI にまかせて、空いた手を売上の仕事に。小さなお店の AI 秘書 REVERSE をつくっています。</p><a class="tlink" data-go="reverse" href="#">見てみる</a></div>
+      </div>
+      <div class="about-row" id="about-cat">
+        <img src="rusty.png" alt="" width="64" height="64">
+        <div><p>手のひらに乗る、世界でいちばん小さな野生の猫をご存じですか。</p><a class="tlink" data-go="cat" href="#">見てみる</a></div>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="wrap">
+      <p>このページは、stera pack の取次店である合同会社貘が作成しています。stera pack は SMBC GMO PAYMENT 株式会社が提供するサービスです。料金・条件は2026年9月時点の公式資料にもとづき、最新の条件は公式サイトと<a href="https://www.smbc-gp.co.jp/stera/pdf/stera_pack_guideline.pdf" target="_blank" rel="noopener">お申し込みにあたってのご留意事項</a>が優先されます。</p>
+      <p>リンクにはお送りした先ごとの番号が付いており、どのご案内に関心をお持ちかを合同会社貘が記録して、ご案内にだけ使います。記載の会社名・サービス名は、各社の商標または登録商標です。</p>
+      <p>合同会社貘｜<span class="nw">東京都品川区北品川四丁目11-8</span> <span class="nw">春雨寺1階</span>｜<a href="mailto:baku@baku-llc.co.jp">baku@baku-llc.co.jp</a></p>
+    </div>
+  </footer>
+  <div class="page-end"></div>
+
+  <div class="bar" id="bar"><a class="btn btn-main" href="#form">担当者から話を聞く（無料）<span class="arrow">→</span></a></div>
+
+<script>
+  // ?r= を受け取り、業種の1行とフォームの業種を既定にする（モック：先頭 f=飲食 b=美容 s=小売）
+  (function () {
+    var r = new URLSearchParams(location.search).get('r') || '';
+    document.getElementById('ref').value = r;
+    var lines = {
+      f: 'ランチのピークでも、カードもQRも1台で会計が終わります。',
+      b: '施術後のお会計がカード・QRで数秒。レジ周りの端末は1台だけ。',
+      s: '少額の買い物でも、電子マネーのタッチで会計が止まりません。'
+    };
+    var k = r.charAt(0).toLowerCase();
+    if (lines[k]) {
+      document.getElementById('seg').textContent = lines[k];
+      document.getElementById('industry').value = k;
+    }
+  })();
+
+  // 費用の節：画面の中央に来た場面に合わせて、左の大きな数字を切り替える（PC）
+  (function () {
+    var vis = document.querySelectorAll('.sv');
+    var io = new IntersectionObserver(function (es) {
+      es.forEach(function (e) {
+        if (!e.isIntersecting) return;
+        var n = e.target.dataset.step;
+        vis.forEach(function (v) { v.classList.toggle('on', v.dataset.step === n); });
+      });
+    }, { rootMargin: '-45% 0px -45% 0px' });
+    document.querySelectorAll('.step').forEach(function (s) { io.observe(s); });
+  })();
+
+  // REVERSE の案内を選んだ人にだけ、メールアドレスの欄を出す
+  document.getElementById('rv').addEventListener('change', function () {
+    document.getElementById('rv-mail').hidden = !this.checked;
+    document.getElementById('mail').required = this.checked;
+  });
+
+  // 猫・REVERSE の入口：貘のドメインを経由させ、r（業種1字＋宛先ごとの乱数）を引き継ぐ。外部の解析タグは入れない
+  var GO = { cat: 'https://baku-llc.co.jp/go/cat', reverse: 'https://baku-llc.co.jp/go/reverse' }; // 仮のパス
+  var ref = document.getElementById('ref').value;
+  document.querySelectorAll('[data-go]').forEach(function (a) {
+    var url = GO[a.dataset.go] + (ref ? '?r=' + encodeURIComponent(ref) : '');
+    a.href = url;
+    a.addEventListener('click', function (e) { e.preventDefault(); alert('モック：行き先の LP は別に作ります。\n' + url); });
+  });
+
+  // 送信すると、フォームを送信完了画面に差し替える（モックなので実際には送らない）
+  document.getElementById('consult').addEventListener('submit', function (e) {
+    e.preventDefault();
+    var sec = document.getElementById('form');
+    sec.querySelector('h2').textContent = 'ご相談を受け付けました';
+    document.getElementById('form-lead').hidden = true;
+    this.hidden = true;
+    document.getElementById('done').hidden = false;
+    ['about-cat', 'about-rv', 'self'].forEach(function (id) { document.getElementById(id).hidden = true; });
+    sec.scrollIntoView({ block: 'start' });
+  });
+
+  // 最初の画面を過ぎたら下に相談ボタンを出す（フォームに着いたら隠す。PC では出さない）
+  var bar = document.getElementById('bar');
+  var heroGone = false, formReached = false;
+  var update = function () { bar.classList.toggle('show', heroGone && !formReached); };
+  new IntersectionObserver(function (es) { heroGone = !es[0].isIntersecting; update(); }).observe(document.getElementById('top'));
+  new IntersectionObserver(function (es) { var e = es[0]; formReached = e.isIntersecting || e.boundingClientRect.top < 0; update(); }).observe(document.getElementById('form'));
+</script>
+</body>
+</html>
